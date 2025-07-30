@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Awesome Homepage</title>
+</head>
+<body>
+<header>
+    <h1>Welcome to My Site</h1>
+    <h2 th:text="${user}">User</h2>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+<main>
+    <h2>About This Page</h2>
+    <p>This is a simple homepage example. It’s designed to be clear and easy to expand.</p>
+    <p>Use this as your starting point to add content, navigation, and style.</p>
+</main>
+<footer>
+    &copy; 2025 Tomasz's Website. All rights reserved.
+</footer>
+</body>
+</html>
