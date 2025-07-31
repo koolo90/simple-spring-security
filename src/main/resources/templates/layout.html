@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>MainContentElement</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">My App</title>
+    <link  th:src="@{/webjars/bootstrap/5.3.3/dist/css/bootstrap.css}" />
+    <script th:src="@{/webjars/bootstrap/5.3.3/dist/js/bootstrap.js}"></script>
+</head>
+<body>
+
+<!-- Header fragment -->
+<div th:replace="fragments :: header"></div>
+
+<!-- Main content placeholder -->
+<main class="container mt-4" th:replace="${view} :: ${element}"></main>
+
+<!-- Footer fragment -->
+<div th:replace="fragments :: footer"></div>
+
+</body>
+</html>

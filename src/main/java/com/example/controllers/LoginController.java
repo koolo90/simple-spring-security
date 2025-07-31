@@ -11,17 +11,20 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";  // plik: src/main/resources/templates/login.html
+        return "login";
     }
 
     @GetMapping("/")
     public String home(Principal principal, Model model) {
         model.addAttribute("user", principal.getName());
-        return "home";   // strona domowa po zalogowaniu
+        model.addAttribute("title", "Welcome, " + principal.getName() + "!");
+        model.addAttribute("view", "home");
+        model.addAttribute("element", "content");
+        return "layout";
     }
 
     @GetMapping("/admin")
     public String admin() {
-        return "admin";  // dostęp tylko dla ADMIN
+        return "admin";
     }
 }

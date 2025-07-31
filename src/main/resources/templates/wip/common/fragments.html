@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <title th:replace="fragments/head :: title">My App</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+
+<header th:fragment="header" class="bg-dark text-white text-center py-3 mb-4">
+    <h1>My Thymeleaf Page</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">My Thymeleaf Page</a>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div th:fragment="banner" class="container-fluid p-0">
+    <img src="./resources/banner.png"
+         alt="Coding Banner"
+         class="img-fluid w-100"
+         style="object-fit: cover; max-height: 400px;">
+</div>
+
+<main th:fragment="main" class="container mt-4">
+    <div class="row">
+        <!-- Column 1 -->
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Exams</h5>
+                    <p class="card-text">This is the left column content.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Questions</h5>
+                    <p class="card-text">This is the middle column content.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Highscores</h5>
+                    <p class="card-text">This is the right column content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container-fluid bg-light py-5">
+            <div class="container">
+                <h5 class="card-title">Bottom Content</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                    est laborum.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer th:fragment="footer" class="bg-light text-center py-3 mt-4 border-top">
+    <p class="mb-0">&copy; 2025 MyApp. All rights reserved.</p>
+</footer>
