@@ -1,4 +1,4 @@
-package com.example.buisseness;
+package com.example.algorythms.elevator;
 
 import java.text.MessageFormat;
 

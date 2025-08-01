@@ -1,13 +1,13 @@
-package com.example.buisseness;
+package com.example.algorythms.elevator;
 
-import com.example.buisseness.Elevator.ElevatorState;
+import com.example.algorythms.elevator.Elevator.ElevatorState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.function.Predicate;
 
-import static com.example.buisseness.Elevator.ElevatorState.STOPPED;
+import static com.example.algorythms.elevator.Elevator.ElevatorState.STOPPED;
 
 public class ElevatorManager {
     private static final Logger log = LoggerFactory.getLogger(ElevatorManager.class);
