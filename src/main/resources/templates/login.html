@@ -1,29 +1,23 @@
 <!DOCTYPE html>
-<html lang="pl"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.thymeleaf.org">
-<head><title>Login</title></head>
-<body>
-<h2>Zaloguj się</h2>
-<form th:action="@{/login}" method="post">
-    <div>
-        <label for="username">Login:</label>
-        <input id="username" type="text" name="username"/>
-    </div>
-    <div>
-        <label for="password">Hasło:</label>
-        <input id="password" type="password" name="password"/>
-    </div>
-    <div>
-        <button type="submit">Zaloguj</button>
-    </div>
-    <div th:if="${param.error}">
-        Nieprawidłowe dane logowania.
-    </div>
-    <div th:if="${param.logout}">
-        Wylogowano pomyślnie.
-    </div>
-</form>
-</body>
-</html>
+<main th:fragment="content">
+    <h2>Zaloguj się</h2>
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label for="username">Login:</label>
+            <input id="username" type="text" name="username"/>
+        </div>
+        <div>
+            <label for="password">Hasło:</label>
+            <input id="password" type="password" name="password"/>
+        </div>
+        <div>
+            <button type="submit">Zaloguj</button>
+        </div>
+        <div th:if="${param.error}">
+            Nieprawidłowe dane logowania.
+        </div>
+        <div th:if="${param.logout}">
+            Wylogowano pomyślnie.
+        </div>
+    </form>
+</main>

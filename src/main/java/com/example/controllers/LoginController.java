@@ -10,8 +10,10 @@ import java.security.Principal;
 public class LoginController {
 
     @GetMapping("/login")
-    public String login() {
-        return "login";
+    public String login(Model model) {
+        model.addAttribute("view", "login");
+        model.addAttribute("element", "form");
+        return "layout";
     }
 
     @GetMapping("/")
