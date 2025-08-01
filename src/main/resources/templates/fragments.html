@@ -1,14 +1,32 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head><title>Fragments used on the page</title></head>
-<body>
-
 <!-- Header -->
-<div th:fragment="header">
-    <header class="bg-dark text-white p-3 text-center">
-        <h1>Global Header</h1>
-    </header>
-</div>
+<header th:fragment="header" class="bg-dark text-white text-center py-3 mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">My Thymeleaf Page</a>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
 
 <!-- Footer -->
 <div th:fragment="footer">
@@ -16,6 +34,3 @@
         <p>&copy; 2025 MyApp. All rights reserved.</p>
     </footer>
 </div>
-
-</body>
-</html>
