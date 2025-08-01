@@ -1,0 +1,9 @@
+<h2>Edit User Roles</h2>
+<form th:action="@{/admin/users/{id}/edit(id=${user.id})}" method="post">
+    <div th:each="role : ${roles}">
+        <input type="checkbox" th:value="${role.id}" th:name="roles"
+               th:checked="${user.roles.contains(role)}"/>
+        <label th:text="${role.name}"></label><br/>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
