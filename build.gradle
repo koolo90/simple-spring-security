@@ -29,7 +29,7 @@ dependencies {
     implementation 'org.flywaydb:flyway-core:11.10.5'
     implementation 'org.flywaydb:flyway-database-postgresql:11.10.5'
 
-    implementation "org.webjars.npm:bootstrap:5.3.3"
+    implementation "org.webjars:bootstrap:5.3.3"
 
     runtimeOnly 'org.postgresql:postgresql:42.7.7'
 
