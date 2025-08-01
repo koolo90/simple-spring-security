@@ -20,7 +20,7 @@ public class SecurityConfiguration {
         log.info("Configuring own security filter chain...");
         return http.authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers("/login", "/logout", "/register", "/css/**", "/js/**").permitAll()
+                                .requestMatchers("/login", "/logout", "/register", "/css/**", "/js/**", "/webjars/**").permitAll()
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                                 .anyRequest().authenticated())
