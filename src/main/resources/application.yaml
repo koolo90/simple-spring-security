@@ -16,17 +16,33 @@ spring:
     show-sql: true
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   thymeleaf:
     cache: false
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: when_authorized
+  security:
+    enabled: true
+
+info:
+  app:
+    name: LearningPlatform
+    version: 0.0.1
+    developer: Tomasz
+
 logging:
   level:
-    org.hibernate:
-        SQL: DEBUG
-        type: INFO
-    org.flywaydb: DEBUG
-    org.thymeleaf: DEBUG
-    org.thymeleaf.templateresolver: DEBUG
+    org.hibernate.SQL: INFO
+    org.hibernate.type: INFO
+    org.flywaydb: INFO
+    org.thymeleaf: INFO
+    org.thymeleaf.templateresolver: INFO
     org.thymeleaf.TemplateEngine: INFO
