@@ -1,11 +1,11 @@
-package com.example.bussinsess;
+package com.example.algorythms;
 
-import com.example.buisseness.Elevator;
-import com.example.buisseness.ElevatorManager;
+import com.example.algorythms.elevator.Elevator;
+import com.example.algorythms.elevator.ElevatorManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.example.buisseness.Elevator.ElevatorState.*;
+import static com.example.algorythms.elevator.Elevator.ElevatorState.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TestElevatorShould {

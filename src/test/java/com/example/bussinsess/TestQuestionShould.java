@@ -8,9 +8,9 @@ class TestQuestionShould {
     @Test
     void haveContent(){
         Question question = new Question();
-        question.setQuestion("What annotations are covered by @SpringBootApplication?");
+        question.setContent("What annotations are covered by @SpringBootApplication?");
 
-        Assertions.assertThat(question.getQuestion()).isNotNull()
+        Assertions.assertThat(question.getContent()).isNotNull()
                 .isEqualTo("What annotations are covered by @SpringBootApplication?");
     }
 

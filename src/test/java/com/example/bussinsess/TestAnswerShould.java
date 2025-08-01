@@ -28,9 +28,9 @@ class TestAnswerShould {
     void haveCorrectAnswer() {
         when(questionMock.getSuggestedAnswer()).thenReturn("Foo");
         answer.setQuestion(questionMock);
-        answer.setAnswer("Foo");
+        answer.setContent("Foo");
 
-        assertThat(answer.getAnswer()).isNotNull().isEqualTo("Foo");
+        assertThat(answer.getContent()).isNotNull().isEqualTo("Foo");
         assertThat(answer.isCorrect()).isTrue();
     }
 
@@ -38,9 +38,9 @@ class TestAnswerShould {
     void haveIncorrectAnswer() {
         when(questionMock.getSuggestedAnswer()).thenReturn("Foo");
         answer.setQuestion(questionMock);
-        answer.setAnswer("Bar");
+        answer.setContent("Bar");
 
-        assertThat(answer.getAnswer()).isNotNull().isEqualTo("Foo");
+        assertThat(answer.getContent()).isNotNull().isEqualTo("Foo");
         assertThat(answer.isCorrect()).isFalse();
     }
 
