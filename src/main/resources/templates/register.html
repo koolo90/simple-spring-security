@@ -1,16 +1,29 @@
 <!-- templates/register.html -->
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
-<head><title>Rejestracja</title></head>
-<body>
-<h2>Zarejestruj się</h2>
-<form th:action="@{/register}" th:object="${user}" method="post">
-    <label>Login: <input type="text" th:field="*{username}" /></label><br>
-    <label>Hasło: <input type="password" th:field="*{password}" /></label><br>
-    <button type="submit">Zarejestruj</button>
-</form>
-<div th:if="${param.error}">
-    <p style="color:red;">Użytkownik już istnieje!</p>
-</div>
-</body>
-</html>
+
+<main th:fragment="content" class="container mt-4">
+    <form th:action="@{/register}" method="post" class="needs-validation" novalidate>
+        <div class="row justify-content-center">
+            <!-- Column 1 -->
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Register</h5>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                            <div class="invalid-feedback">User with specified name already exists</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="invalid-feedback">Please enter your password.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>

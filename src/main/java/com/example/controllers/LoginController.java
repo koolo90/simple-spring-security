@@ -12,14 +12,15 @@ public class LoginController {
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("view", "login");
-        model.addAttribute("element", "form");
+        model.addAttribute("element", "content");
         return "layout";
     }
 
     @GetMapping("/")
     public String home(Principal principal, Model model) {
-        model.addAttribute("user", principal.getName());
-        model.addAttribute("title", "Welcome, " + principal.getName() + "!");
+        String username = principal != null ? principal.getName() : "Guest";
+        model.addAttribute("user", username);
+        model.addAttribute("title", "Welcome, " + username + "!");
         model.addAttribute("view", "home");
         model.addAttribute("element", "content");
         return "layout";

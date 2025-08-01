@@ -27,7 +27,9 @@ public class RegistrationController {
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new RegistrationDto());
-        return "register"; // templates/register.html
+        model.addAttribute("view", "register");
+        model.addAttribute("element", "form");
+        return "layout"; // templates/register.html
     }
 
     @PostMapping("/register")
@@ -46,6 +48,6 @@ public class RegistrationController {
         user.getRoles().add(defaultRole);
 
         userRepository.save(user);
-        return "redirect:/login?registered";
+        return "redirect:/login?registered=true";
     }
 }
