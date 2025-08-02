@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<link rel="stylesheet" href="http://127.0.0.1:8080/webjars/bootstrap/5.3.3/css/bootstrap.css">
 <main th:fragment="admin-form" class="container mt-4">
     <div class="row justify-content-center">
         <!-- Column 1 -->
+        <div class="col-md-6 col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title alert-warning">Welcome in TestR!</h5>
+                    <p class="card-text text-dark-emphasis">You've just deployed first version on your host, congrats!</p>
+                    <p class="card-text text-dark-emphasis">To continue using the app you need to create admin account first, and reboot the app afterwards</p>
+                    <p class="card-text text-dark-emphasis">Please feed required information to the form on the left and then restart the app.</p>
+                    <p class="card-text text-warning-emphasis">Following steps are required:</p>
+                    <span class="card-text text-warning-emphasis">
+                        <ol>
+                            <li>Provide administrator credentials</li>
+                            <li>Restart appliaction</li>
+                            <li>Enjoy!</li>
+                        </ol>
+                    </span>
+                </div>
+            </div>
+        </div>
         <div class="col-md-4 mb-3">
             <div class="card h-100">
                 <div class="card-body">
-                    <div th:if="${param.info}" class="alert alert-info" role="alert">
+                    <div th:if="${param.info}" class="alert alert-warning" role="alert">
                         <span th:switch="${param.info}">
                             <span th:case="'loggedOut'">You have been successfully logged out.</span>
                             <span th:case="'loginRequired'">Please log in to access this page.</span>
@@ -30,6 +48,20 @@
                             <button type="submit" class="btn btn-primary w-100">Create admin</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<main th:fragment="reboot-warn" class="container mt-4">
+    <div class="row justify-content-center">
+        <!-- Column 1 -->
+        <div class="col-md-12 col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title alert-warning">Welcome in TestR!</h5>
+                    <p class="card-text text-dark-emphasis">Everything is in place, please reboot the app now.</p>
                 </div>
             </div>
         </div>

@@ -1,6 +1,5 @@
-package com.example.filters;
+package com.example.initializers;
 
-import com.example.initializers.AdminInitializationChecker;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,8 +31,8 @@ public class AdminRedirectFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String path = request.getRequestURI();
-        boolean adminExists = adminInitializationChecker.isAdminCreated();
-        boolean isInitForm = path.startsWith("/init-admin");
+        boolean adminExists = adminInitializationChecker.adminExists();
+        boolean isInitForm = path.startsWith("/init-admin") || path.startsWith("/init-reboot");
         boolean isStatic = path.startsWith("/css") || path.startsWith("/js") || path.startsWith("/webjars");
 
         if (!adminExists && !isInitForm && !isStatic) {

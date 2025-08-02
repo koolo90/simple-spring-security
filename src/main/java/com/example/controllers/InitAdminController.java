@@ -1,6 +1,6 @@
 package com.example.controllers;
 
-import com.example.services.AdminCheckService;
+import com.example.initializers.AdminInitializationChecker;
 import com.example.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,17 +11,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class InitAdminController {
     private final UserService userService;
-    private final AdminCheckService adminCheckService;
-
-    public InitAdminController(UserService userService, AdminCheckService adminCheckService) {
+    private final AdminInitializationChecker adminInitializationChecker;
+    public InitAdminController(UserService userService, AdminInitializationChecker adminInitializationChecker) {
         this.userService = userService;
-        this.adminCheckService = adminCheckService;
+        this.adminInitializationChecker = adminInitializationChecker;
     }
 
     @GetMapping("/init-admin")
     public String initAdmin(Model model) {
-        if(adminCheckService.isAdminInitialized()) {
-            return "redirect:/login";
+        if(adminInitializationChecker.adminExists()) {
+            return "redirect:/init-reboot";
         }
         model.addAttribute("view", "init");
         model.addAttribute("element", "admin-form");
@@ -29,8 +28,18 @@ public class InitAdminController {
     }
 
     @PostMapping("/init-admin")
-    public String initAdmin(@RequestParam String username, @RequestParam String password) {
+    public String initAdmin(Model model, @RequestParam String username, @RequestParam String password) {
         userService.createAdmin(username, password);
-        return "redirect:/login";
+        return "redirect:/init-reboot";
+    }
+
+    @GetMapping("/init-reboot")
+    public String requestReboot(Model model) {
+        if(!adminInitializationChecker.adminExists()) {
+            return "redirect:/init-admin";
+        }
+        model.addAttribute("view", "init");
+        model.addAttribute("element", "reboot-warn");
+        return "layout";
     }
 }

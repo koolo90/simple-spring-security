@@ -11,7 +11,7 @@ public class AdminInitializationChecker {
         this.userRepository = userRepository;
     }
 
-    public boolean isAdminCreated() {
+    public boolean adminExists() {
         return userRepository.existsByRole("ROLE_ADMIN");
     }
 }

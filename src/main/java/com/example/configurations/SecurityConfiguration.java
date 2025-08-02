@@ -1,7 +1,7 @@
 package com.example.configurations;
 
-import com.example.filters.AdminRedirectFilter;
-import com.example.services.AdminCheckService;
+import com.example.initializers.AdminInitializationChecker;
+import com.example.initializers.AdminRedirectFilter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Bean;
@@ -20,10 +20,9 @@ public class SecurityConfiguration {
     private static final Logger log = LogManager.getLogger(SecurityConfiguration.class);
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, AdminCheckService adminCheckService, AdminRedirectFilter adminRedirectFilter) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, AdminInitializationChecker adminInitializationChecker, AdminRedirectFilter adminRedirectFilter) throws Exception {
         log.info("Configuring own security filter chain...");
-        boolean adminInitialized = adminCheckService.isAdminInitialized();
-
+        boolean adminInitialized = adminInitializationChecker.adminExists();
 
         if (adminInitialized) {
             log.info("Configuring classing filter chain");
@@ -42,7 +41,7 @@ public class SecurityConfiguration {
             return http.addFilterBefore(adminRedirectFilter, UsernamePasswordAuthenticationFilter.class)
                     .authorizeHttpRequests(auth -> auth
                             .requestMatchers("/css/**", "/js/**", "/webjars/**").permitAll()
-                            .requestMatchers("/init-admin").permitAll()
+                            .requestMatchers("/init-admin", "/init-reboot").permitAll()
                             .anyRequest().denyAll()
                     ).formLogin(AbstractHttpConfigurer::disable).build();
         }
