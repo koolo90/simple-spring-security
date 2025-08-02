@@ -34,7 +34,7 @@ public class AdminController {
 
     @PostMapping("/{id}/edit")
     public String updateUserRoles(@PathVariable Long id,
-                                  @RequestParam(required = false) List<Long> roles) {
+                                  @RequestParam(required = false) List<String> roles) {
         userService.updateUserRoles(id, new HashSet<>(roles != null ? roles : List.of()));
         return "redirect:/admin/users";
     }

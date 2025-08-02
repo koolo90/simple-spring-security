@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<main th:fragment="admin-form" class="container mt-4">
+    <div class="row justify-content-center">
+        <!-- Column 1 -->
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div th:if="${param.info}" class="alert alert-info" role="alert">
+                        <span th:switch="${param.info}">
+                            <span th:case="'loggedOut'">You have been successfully logged out.</span>
+                            <span th:case="'loginRequired'">Please log in to access this page.</span>
+                            <span th:case="*">Info: <span th:text="${param.info}"></span></span>
+                        </span>
+                    </div>
+                    <form th:action="@{/init-admin}" method="post" class="needs-validation" novalidate>
+                        <h5 class="card-title alert-warning">Initialize administrators account</h5>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                            <div class="invalid-feedback">Please enter your username.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="invalid-feedback">Please enter your password.</div>
+                        </div>
+                        <div class="btn-group text-end">
+                            <button type="submit" class="btn btn-primary w-100">Create admin</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
