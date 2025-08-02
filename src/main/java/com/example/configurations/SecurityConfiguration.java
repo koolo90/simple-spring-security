@@ -1,5 +1,6 @@
 package com.example.configurations;
 
+import com.example.filters.AdminRedirectFilter;
 import com.example.services.AdminCheckService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -18,28 +20,32 @@ public class SecurityConfiguration {
     private static final Logger log = LogManager.getLogger(SecurityConfiguration.class);
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, AdminCheckService adminCheckService) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, AdminCheckService adminCheckService, AdminRedirectFilter adminRedirectFilter) throws Exception {
         log.info("Configuring own security filter chain...");
-        if(!adminCheckService.isAdminInitialized()) {
-            log.info("Admin was not initalized, sealing instance for admin initalization.");
-            return http.authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/init-admin", "/css/**", "/js/**", "/webjars/**").permitAll()
-                    .anyRequest().denyAll())
-                    .formLogin(AbstractHttpConfigurer::disable)
+        boolean adminInitialized = adminCheckService.isAdminInitialized();
+
+
+        if (adminInitialized) {
+            log.info("Configuring classing filter chain");
+            return http.addFilterBefore(adminRedirectFilter, UsernamePasswordAuthenticationFilter.class)
+                    .authorizeHttpRequests(
+                            auth -> auth
+                                    .requestMatchers("/css/**", "/js/**", "/webjars/**").permitAll()
+                                    .requestMatchers("/login", "/logout", "/register").permitAll()
+                                    .requestMatchers("/admin/**").hasRole("ADMIN")
+                                    .anyRequest().authenticated()
+                    ).formLogin(form -> form.loginPage("/login").permitAll())
+                    .logout(logout -> logout.logoutUrl("/logout").permitAll())
                     .build();
-
+        } else {
+            log.info("Admin was not initialized, sealing instance for admin initialization.");
+            return http.addFilterBefore(adminRedirectFilter, UsernamePasswordAuthenticationFilter.class)
+                    .authorizeHttpRequests(auth -> auth
+                            .requestMatchers("/css/**", "/js/**", "/webjars/**").permitAll()
+                            .requestMatchers("/init-admin").permitAll()
+                            .anyRequest().denyAll()
+                    ).formLogin(AbstractHttpConfigurer::disable).build();
         }
-
-        log.info("Configuring classing filter chain");
-        return http.authorizeHttpRequests(
-                        auth -> auth
-                                .requestMatchers("/login", "/logout", "/register", "/css/**", "/js/**", "/webjars/**").permitAll()
-                                .requestMatchers("/admin/**").hasRole("ADMIN")
-                                .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-                                .anyRequest().authenticated())
-                .formLogin(form -> form.loginPage("/login").permitAll())
-                .logout(logout -> logout.logoutUrl("/logout").permitAll())
-                .build();
     }
 
     @Bean
